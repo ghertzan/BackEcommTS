@@ -1,8 +1,8 @@
 import { ProductDao } from "../models/daos/ProductDao";
-import { TProduct } from "../models/ProductModel";
+import { IProduct } from "../interfaces/IProduct";
 
 export class ProductService {
-	static create = async (product: TProduct) => {
+	static create = async (product: IProduct) => {
 		try {
 			return await ProductDao.create(product);
 		} catch (error) {
@@ -21,6 +21,21 @@ export class ProductService {
 	static getById = async (pid: string) => {
 		try {
 			return await ProductDao.getById(pid);
+		} catch (error) {
+			throw new Error(error);
+		}
+	};
+
+	static update = async (pid: string, toUpdateProd: IProduct) => {
+		try {
+			return await ProductDao.update(pid, toUpdateProd);
+		} catch (error) {
+			throw new Error(error);
+		}
+	};
+	static delete = async (pid: string) => {
+		try {
+			return await ProductDao.delete(pid);
 		} catch (error) {
 			throw new Error(error);
 		}
