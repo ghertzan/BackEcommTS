@@ -10,4 +10,22 @@ export class UserDao {
 			throw new Error(error);
 		}
 	};
+
+	static getAll = async () => {
+		try {
+			const users = await Users.find({});
+			return users;
+		} catch (error) {
+			throw new Error(error);
+		}
+	};
+
+	static getById = async (uid: string) => {
+		try {
+			const userFound = await Users.findById(uid);
+			return userFound;
+		} catch (error) {
+			throw new Error(error);
+		}
+	};
 }
